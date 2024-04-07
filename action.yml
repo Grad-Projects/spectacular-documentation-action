@@ -1,12 +1,13 @@
 name: 'Spectacular documentation generator action draft'
 description: 'Greet someone'
+branding:
+  icon: book-open
+  color: purple
 inputs:
   who-to-greet:  # id of input
     description: 'Who to greet'
     required: true
     default: 'World'
-icon: book-open
-color: purple
 outputs:
   random-number:
     description: "Random number"
