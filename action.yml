@@ -2,7 +2,7 @@ name: 'Javascript Action Test'
 description: 'Greet someone and record the time'
 branding:
   icon: 'heart'
-  color: 'pink'
+  color: 'red'
 inputs:
   who-to-greet:  # id of input
     description: 'Who to greet'
