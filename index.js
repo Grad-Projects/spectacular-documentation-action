@@ -30,13 +30,20 @@ let stringsArray = JSON.parse(jsonArray);
 
 const zip = new AdmZip();
 
+var filePath;
+
 stringsArray.forEach((string,index) => {
-    convertedStrings.push(getBase64(string));
-    const htmlContent = `<html><body>${getBase64(string)}</body></html>`;
-    const filename = `output${index}.html`;
-    fs.writeFileSync(filename, htmlContent);
-    console.log(`Created HTML file: ${filename}`);
-    zip.addFile(filename, Buffer.from(htmlContent));
+    filePath = string;
+    fs.readFile(filePath, 'utf8', (err, data) => {
+      if (err) {
+        console.error('Error reading file:', err);
+        return;
+      }
+      convertedStrings.push(getBase64(data));
+      fs.writeFileSync(filename, htmlContent);
+      console.log(`Created HTML file: ${filename}`);
+      zip.addFile(filename, Buffer.from(htmlContent));
+    });
 });
 
 zip.writeZip('output.zip');
