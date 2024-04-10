@@ -55,13 +55,12 @@ console.log('Created output.zip');
 
 
 function getBase64(file) {
-  var reader = new FileReader();
-  reader.readAsDataURL(file);
-  reader.onload = function () {
-    console.log(reader.result);
+  fs.readAsDataURL(file);
+  fs.onload = function () {
+    console.log(fs.result);
   };
-  reader.onerror = function (error) {
+  fs.onerror = function (error) {
     console.log('Error: ', error);
   };
-  return reader.result;
+  return fs.result;
 }
