@@ -22,7 +22,7 @@ inputs:
 outputs:
   generated-docs: 
     description: 'HTML for generated documents'
-    default: []
+    default: '["default value"]'
     type: array
     items:
       type: string
