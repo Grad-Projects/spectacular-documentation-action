@@ -33955,22 +33955,17 @@ try {
 }
 
 
-const stringsArrayTest = ['String 1', 'String 2', 'String 3'];
-console.log("HELLO HELLO HELLO?????");
-console.log(stringsArrayTest);
-console.log("HELLO HELLO HELLO?????");
 const AdmZip = __nccwpck_require__(4691);
 const fs = __nccwpck_require__(7147);
 
 const jsonArray = core.getInput('files-input');
 let stringsArray = JSON.parse(jsonArray);
-console.log(`HELLO HERE IS THE ARRAY: ${stringsArray}`)
 
 const zip = new AdmZip();
 
-stringsArray.forEach((string) => {
+stringsArray.forEach((string,index) => {
     const htmlContent = `<html><body>${string}</body></html>`;
-    const filename = `output${string}.html`;
+    const filename = `output${index}.html`;
     fs.writeFileSync(filename, htmlContent);
     console.log(`Created HTML file: ${filename}`);
     zip.addFile(filename, Buffer.from(htmlContent));
