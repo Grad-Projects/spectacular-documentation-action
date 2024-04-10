@@ -20,24 +20,26 @@ try {
 }
 
 
+//const stringsArray = ['String 1', 'String 2', 'String 3'];
+console.log("HELLO HELLO HELLO?????");
+const AdmZip = require('adm-zip');
 const fs = require('fs');
 
-//const stringsArray = ['String 1', 'String 2', 'String 3'];
 const stringsArray = core.getInput('files-input');
 
-stringsArray.forEach((string, index) => {
-    fs.writeFileSync(`output${index + 1}.html`, `<html><body>${string}</body></html>`);
-});
-
-const AdmZip = require('adm-zip');
 
 const zip = new AdmZip();
 
 stringsArray.forEach((string, index) => {
-    zip.addFile(`output${index + 1}.html`, Buffer.from(`<html><body>${string}</body></html>`));
+    const htmlContent = `<html><body>${string}</body></html>`;
+    const filename = `output${index + 1}.html`;
+    fs.writeFileSync(filename, htmlContent);
+    console.log(`Created HTML file: ${filename}`);
+    zip.addFile(filename, Buffer.from(htmlContent));
 });
 
 zip.writeZip('output.zip');
+console.log('Created output.zip');
 
 
 function getBase64(file) {
