@@ -30,9 +30,9 @@ const fs = require('fs');
 
 const zip = new AdmZip();
 
-stringsArray.forEach((string, index) => {
+stringsArray.forEach((string) => {
     const htmlContent = `<html><body>${string}</body></html>`;
-    const filename = `output${index + 1}.html`;
+    const filename = `output${string}.html`;
     fs.writeFileSync(filename, htmlContent);
     console.log(`Created HTML file: ${filename}`);
     zip.addFile(filename, Buffer.from(htmlContent));
