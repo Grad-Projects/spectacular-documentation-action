@@ -32,9 +32,11 @@ const zip = new AdmZip();
 
 var filePath;
 
-stringsArray.forEach((string,index) => {
+console.log(stringsArray);
+
+stringsArray.forEach(async (string,index) => {
     filePath = string;
-    fs.readFile(filePath, 'utf8', (err, data) => {
+    await fs.readFile(filePath, 'utf8', (err, data) => {
       if (err) {
         console.error('Error reading file:', err);
         return;
