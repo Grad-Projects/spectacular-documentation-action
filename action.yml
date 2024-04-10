@@ -22,9 +22,6 @@ inputs:
 outputs:
   generated-docs: 
     description: 'HTML for generated documents'
-  htmlZip:
-    description: 'Zip folder containing HTML files'
-    path: 'output.zip'
 runs:
   using: 'node20'
   main: 'dist/index.js'
