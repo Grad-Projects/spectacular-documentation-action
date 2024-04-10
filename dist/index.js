@@ -33955,12 +33955,15 @@ try {
 }
 
 
-//const stringsArray = ['String 1', 'String 2', 'String 3'];
+const stringsArrayTest = ['String 1', 'String 2', 'String 3'];
+console.log("HELLO HELLO HELLO?????");
+console.log(stringsArrayTest);
 console.log("HELLO HELLO HELLO?????");
 const AdmZip = __nccwpck_require__(4691);
 const fs = __nccwpck_require__(7147);
 
-const stringsArray = core.getInput('files-input');
+const jsonArray = core.getInput('files-input');
+let stringsArray = JSON.parse(jsonArray);
 console.log(`HELLO HERE IS THE ARRAY: ${stringsArray}`)
 
 const zip = new AdmZip();
