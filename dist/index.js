@@ -31083,14 +31083,14 @@ const github = __nccwpck_require__(8098);
 try {
   const selectedStyle = core.getInput('style');
   console.log(`Chosen style ${selectedStyle}!`);
-  const docNames = core.getInput('name-of-docs');
-  console.log(`Chosen style ${docNames}!`);
+  const githubName = core.getInput('github-username');
+  console.log(`Chosen style ${githubName}!`);
   const filesInput = core.getInput('files-input');
   console.log(`Chosen style ${filesInput}!`);
   const generatedDocs = ["Yo","Yo"];
   core.setOutput("generated-docs", generatedDocs);
 
-  
+
   // Get the JSON webhook payload for the event that triggered the workflow
   const payload = JSON.stringify(github.context.payload, undefined, 2)
   console.log(`The event payload: ${payload}`);

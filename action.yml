@@ -4,21 +4,18 @@ branding:
   icon: 'heart'
   color: 'red'
 inputs:
+  github-username:
+    description: 'Your github username'
+    required: true
+    default: 'username'
   style:
     description: 'Style for output of documentation'
     required: true
     default: 1
-  name-of-docs: 
-    description: 'Titles of documentation'
-    required: true
-    default: []
-    type: array
-    items:
-      type: string
   files-input:
-    description: "File paths to generate for"
+    description: 'File paths to generate for'
     required: true
-    default: []
+    default: '["default value"]'
     type: array
     items:
       type: string
