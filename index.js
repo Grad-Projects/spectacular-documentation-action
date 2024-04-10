@@ -19,6 +19,8 @@ try {
   core.setFailed(error.message);
 }
 
+var convertedStrings = [];
+
 
 const AdmZip = require('adm-zip');
 const fs = require('fs');
@@ -29,7 +31,8 @@ let stringsArray = JSON.parse(jsonArray);
 const zip = new AdmZip();
 
 stringsArray.forEach((string,index) => {
-    const htmlContent = `<html><body>${string}</body></html>`;
+    convertedStrings.push(getBase64(string));
+    const htmlContent = `<html><body>${getBase64(string)}</body></html>`;
     const filename = `output${index}.html`;
     fs.writeFileSync(filename, htmlContent);
     console.log(`Created HTML file: ${filename}`);
@@ -49,4 +52,5 @@ function getBase64(file) {
   reader.onerror = function (error) {
     console.log('Error: ', error);
   };
+  return reader.result;
 }
