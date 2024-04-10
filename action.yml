@@ -22,10 +22,6 @@ inputs:
 outputs:
   generated-docs: 
     description: 'HTML for generated documents'
-    default: '["default value"]'
-    type: array
-    items:
-      type: string
 runs:
   using: 'node20'
   main: 'dist/index.js'
