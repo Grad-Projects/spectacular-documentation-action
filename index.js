@@ -6,8 +6,8 @@ try {
   console.log(`Chosen style ${selectedStyle}!`);
   const githubName = core.getInput('github-username');
   console.log(`Github username:  ${githubName}!`);
-  const filesInput = core.getInput('files-input');
-  console.log(`Files selected: ${filesInput}!`);
+  const stringsArray = core.getInput('files-input');
+  console.log(`Files selected: ${stringsArray }!`);
   const generatedDocs = ["Yo","Yo"];
   core.setOutput("generated-docs", generatedDocs);
 
@@ -18,6 +18,26 @@ try {
 } catch (error) {
   core.setFailed(error.message);
 }
+
+
+const fs = require('fs');
+
+//const stringsArray = ['String 1', 'String 2', 'String 3'];
+const stringsArray = core.getInput('files-input');
+
+stringsArray.forEach((string, index) => {
+    fs.writeFileSync(`output${index + 1}.html`, `<html><body>${string}</body></html>`);
+});
+
+const AdmZip = require('adm-zip');
+
+const zip = new AdmZip();
+
+stringsArray.forEach((string, index) => {
+    zip.addFile(`output${index + 1}.html`, Buffer.from(`<html><body>${string}</body></html>`));
+});
+
+zip.writeZip('output.zip');
 
 
 function getBase64(file) {
