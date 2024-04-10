@@ -26,7 +26,6 @@ runs:
 outputs:
   generated-docs: 
     description: 'HTML for generated documents'
-  outputs:
   htmlZip:
     description: 'Zip folder containing HTML files'
     path: 'output.zip
