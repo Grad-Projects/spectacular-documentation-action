@@ -2,7 +2,6 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 
 try {
-  // `who-to-greet` input defined in action metadata file
   const selectedStyle = core.getInput('style');
   console.log(`Chosen style ${selectedStyle}!`);
   const docNames = core.getInput('name-of-docs');
@@ -11,6 +10,8 @@ try {
   console.log(`Chosen style ${filesInput}!`);
   const generatedDocs = ["Yo","Yo"];
   core.setOutput("generated-docs", generatedDocs);
+
+  
   // Get the JSON webhook payload for the event that triggered the workflow
   const payload = JSON.stringify(github.context.payload, undefined, 2)
   console.log(`The event payload: ${payload}`);
