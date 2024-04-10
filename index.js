@@ -20,13 +20,13 @@ try {
 }
 
 
-const stringsArray = ['String 1', 'String 2', 'String 3'];
+//const stringsArray = ['String 1', 'String 2', 'String 3'];
 console.log("HELLO HELLO HELLO?????");
 const AdmZip = require('adm-zip');
 const fs = require('fs');
 
-//const stringsArray = core.getInput('files-input');
-
+const stringsArray = core.getInput('files-input');
+console.log(`HELLO HERE IS THE ARRAY: ${stringsArray}`)
 
 const zip = new AdmZip();
 
