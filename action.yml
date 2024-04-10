@@ -19,16 +19,12 @@ inputs:
     type: array
     items:
       type: string
-runs:
-  using: 'node12'
-  main: 'dist/index.js'
-
 outputs:
   generated-docs: 
     description: 'HTML for generated documents'
   htmlZip:
     description: 'Zip folder containing HTML files'
-    files: 'output.zip
+    path: 'output.zip
 runs:
   using: 'node20'
   main: 'dist/index.js'
