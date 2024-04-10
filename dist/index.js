@@ -31084,9 +31084,9 @@ try {
   const selectedStyle = core.getInput('style');
   console.log(`Chosen style ${selectedStyle}!`);
   const githubName = core.getInput('github-username');
-  console.log(`Chosen style ${githubName}!`);
+  console.log(`Github username:  ${githubName}!`);
   const filesInput = core.getInput('files-input');
-  console.log(`Chosen style ${filesInput}!`);
+  console.log(`Files selected: ${filesInput}!`);
   const generatedDocs = ["Yo","Yo"];
   core.setOutput("generated-docs", generatedDocs);
 
