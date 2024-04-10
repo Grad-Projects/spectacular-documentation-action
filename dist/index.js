@@ -33975,6 +33975,8 @@ stringsArray.forEach((string,index) => {
         return;
       }
       convertedStrings.push(getBase64(data));
+      const htmlContent = `<html><body>${getBase64()}</body></html>`;
+      const filename = `output${index}.html`;
       fs.writeFileSync(filename, htmlContent);
       console.log(`Created HTML file: ${filename}`);
       zip.addFile(filename, Buffer.from(htmlContent));
