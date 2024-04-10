@@ -1,16 +1,34 @@
-name: 'Javascript Action Test'
-description: 'Greet someone and record the time'
+name: 'Spectacular Documentation Generation Action'
+description: 'Generates your documentation'
 branding:
   icon: 'heart'
   color: 'red'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  style:
+    description: 'Style for output of documentation'
     required: true
-    default: 'World'
+    default: 1
+  name-of-docs: 
+    description: 'Titles of documentation'
+    required: true
+    default: []
+    type: array
+    items:
+      type: string
+  files-input:
+    description: "File paths to generate for"
+    required: true
+    default: []
+    type: array
+    items:
+      type: string
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  generated-docs: 
+    description: 'HTML for generated documents'
+    default: []
+    type: array
+    items:
+      type: string
 runs:
   using: 'node20'
   main: 'dist/index.js'
