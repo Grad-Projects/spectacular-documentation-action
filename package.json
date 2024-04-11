@@ -12,6 +12,7 @@
   "dependencies": {
     "@actions/core": "^1.10.1",
     "@actions/github": "^6.0.0",
-    "adm-zip": "^0.5.12"
+    "adm-zip": "^0.5.12",
+    "filereader": "^0.10.3"
   }
 }
