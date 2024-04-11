@@ -77,8 +77,32 @@ Run your action! Your documentation will be created as an artifact which you can
 
 ## Available Styles Guide
 - Simple ✨
+
+```
+style: 'Simple'
+```
+
 - Serious Business 👨‍💼
+  
+```
+style: 'Serious Business'
+```
+
 - Pastel Dreams 💗
+
+```
+style: 'Pastel Dreams'
+```
+
 - Eye Searer *(Use at own risk)* ☢️
+
+```
+style: 'Eye Searer'
+```
+
 - I Love To Code *(Use at own risk)* ☢️
+
+```
+style: 'I Love To Code'
+```
 
