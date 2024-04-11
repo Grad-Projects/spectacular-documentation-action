@@ -49,7 +49,8 @@ try {
   callUserCheck();
 
   url =  `${apiUrl}${generateDocString}?api-version=2`;
-  docuGen();
+  htmlList = docuGen();
+  console.log(htmlList);
   console.log("finished making API calls");
 
 
@@ -119,7 +120,7 @@ async function docuGen() {
       })
       .then(data => {
           console.log('Response:', data); // Log the response JSON
-          htmlList = JSON.parse(data);
+          //htmlList = JSON.parse(data);
       })
       .catch(error => {
           console.error('Error:', error);
