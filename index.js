@@ -24,45 +24,66 @@ var convertedStrings = [];
 
 const AdmZip = require('adm-zip');
 const fs = require('fs');
-var FileReader = require('filereader');
 
 const jsonArray = core.getInput('files-input');
-let stringsArray = JSON.parse(jsonArray);
+let filePaths = JSON.parse(jsonArray);
+
+const base64List = [];
 
 const zip = new AdmZip();
 
-var filePath;
 
-console.log(stringsArray);
+console.log(filePaths);
 
-stringsArray.forEach(async (string,index) => {
-    filePath = string;
-    await fs.readFile(filePath, 'utf8', (err, data) => {
-      if (err) {
-        console.error('Error reading file:', err);
-        return;
-      }
-      convertedStrings.push(getBase64(data));
-      const htmlContent = `<html><body>${getBase64()}</body></html>`;
+filePaths.forEach(filePath => {
+  const base64String = fileToBase64(filePath);
+  if(isCSFile(filePath)){
+    if (base64String) {
+        base64List.push(base64String);
+    } else {
+        console.log('Failed to convert file to base64:', filePath);
+    }
+  }else{
+    console.log("FOUND A FILE THAT IS NOT A C# FILE")
+  }
+});
+
+base64List.forEach(async (string,index) => {
+      console.log("we here");
+      const htmlContent = `<html><body>${string}</body></html>`;
       const filename = `output${index}.html`;
       fs.writeFileSync(filename, htmlContent);
       console.log(`Created HTML file: ${filename}`);
       zip.addFile(filename, Buffer.from(htmlContent));
     });
-});
+
+console.log('Base64 strings:', base64List);
 
 zip.writeZip('output.zip');
 console.log('Created output.zip');
 
 
-function getBase64(file) {
-  var reader = new FileReader();
-  var readFile = file.file[0];
-  reader.readAsDataURL(readFile);
-  reader.onload = function () {
-    console.log(reader.result);
-  };
-  reader.onerror = function (error) {
-    console.log('Error: ', error);
-  };
+
+function fileToBase64(filePath) {
+  try {
+      // Read the file into a buffer
+      const fileBuffer = fs.readFileSync(filePath);
+
+      // Check if the fileBuffer is empty
+      if (!fileBuffer.length) {
+          throw new Error('File is empty');
+      }
+
+      // Convert the buffer to a base64 string
+      const base64String = fileBuffer.toString('base64');
+
+      return base64String;
+  } catch (error) {
+      console.error('Error reading file:', error);
+      return null;
+  }
+}
+
+function isCSFile(filePath) {
+  return path.extname(filePath).toLowerCase() === '.cs';
 }
