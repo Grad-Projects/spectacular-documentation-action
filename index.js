@@ -10,7 +10,16 @@ const zip = new AdmZip();
 
 const personalAccessToken = core.getInput('github-personal-access-token');
 
+
+// Define the API URL
+const apiUrl = 'http://spectacular-generator.eba-833qa9rw.eu-west-1.elasticbeanstalk.com/';
+const checkUserString = '/api/checkUser';
+const generateDocString = '/api/generate/documentation';
 let filePaths = JSON.parse(jsonArray);
+
+var url;
+
+var htmlList;
 
 try {
   const selectedStyle = core.getInput('style');
@@ -31,13 +40,49 @@ try {
       }
   });
 
-  base64List.forEach(async (string,index) => {
-      const htmlContent = `<html><body>${string}</body></html>`;
-      const filename = `output${index}.html`;
-      fs.writeFileSync(filename, htmlContent);
-      console.log(`Created HTML file: ${filename}`);
-      zip.addFile(filename, Buffer.from(htmlContent));
-    });
+
+
+  //CHECK IF USER EXISTS API CALL
+  url =  `${apiUrl}${checkUserString}?api-version=2`;
+
+    // Make a PUT request
+  put(url,data)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log(data);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+  //GENERATE DOCUMENTATION API CALL
+    //populate htmlList here <3
+
+  htmlList.forEach(async (html,index) => {
+    const htmlContent = html[0];
+    console.log(`HTML CONTENT: ${htmlContent}`);
+    const fileName = `${html[1]}-${index}.html`;
+    console.log(`FILE NAME: ${fileName}`);
+    fs.writeFileSync(fileName, htmlContent);
+    console.log(`Created HTML file: ${filename}`);
+    zip.addFile(filename, Buffer.from(htmlContent));
+
+  });
+
+
+
+  // base64List.forEach(async (string,index) => {
+  //     const htmlContent = `<html><body>${string}</body></html>`;
+  //     const filename = `output${index}.html`;
+  //     fs.writeFileSync(filename, htmlContent);
+  //     console.log(`Created HTML file: ${filename}`);
+  //     zip.addFile(filename, Buffer.from(htmlContent));
+  //   });
 
 
   zip.writeZip('output.zip');
