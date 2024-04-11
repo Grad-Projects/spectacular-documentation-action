@@ -32035,6 +32035,14 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
+/***/ 5391:
+/***/ ((module) => {
+
+module.exports = eval("require")("filereader");
+
+
+/***/ }),
+
 /***/ 1633:
 /***/ ((module) => {
 
@@ -33959,6 +33967,7 @@ var convertedStrings = [];
 
 const AdmZip = __nccwpck_require__(4691);
 const fs = __nccwpck_require__(7147);
+var FileReader = __nccwpck_require__(5391);
 
 const jsonArray = core.getInput('files-input');
 let stringsArray = JSON.parse(jsonArray);
@@ -33990,16 +33999,15 @@ console.log('Created output.zip');
 
 
 function getBase64(file) {
-  fs.readAsDataURL(file);
-  fs.onload = function () {
-    console.log(fs.result);
+  var reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = function () {
+    console.log(reader.result);
   };
-  fs.onerror = function (error) {
+  reader.onerror = function (error) {
     console.log('Error: ', error);
   };
-  return fs.result;
 }
-
 })();
 
 module.exports = __webpack_exports__;

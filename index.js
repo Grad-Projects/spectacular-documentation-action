@@ -24,6 +24,7 @@ var convertedStrings = [];
 
 const AdmZip = require('adm-zip');
 const fs = require('fs');
+var FileReader = require('filereader');
 
 const jsonArray = core.getInput('files-input');
 let stringsArray = JSON.parse(jsonArray);
@@ -55,12 +56,12 @@ console.log('Created output.zip');
 
 
 function getBase64(file) {
-  fs.readAsDataURL(file);
-  fs.onload = function () {
-    console.log(fs.result);
+  var reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = function () {
+    console.log(reader.result);
   };
-  fs.onerror = function (error) {
+  reader.onerror = function (error) {
     console.log('Error: ', error);
   };
-  return fs.result;
 }
