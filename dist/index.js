@@ -27764,14 +27764,6 @@ exports["default"] = _default;
 
 /***/ }),
 
-/***/ 6416:
-/***/ ((module) => {
-
-module.exports = eval("require")("node-fetch");
-
-
-/***/ }),
-
 /***/ 1633:
 /***/ ((module) => {
 
@@ -29869,7 +29861,6 @@ const core = __nccwpck_require__(5429);
 const fs = (__nccwpck_require__(7147).promises);
 const path = __nccwpck_require__(1017);
 const AdmZip = __nccwpck_require__(4691);
-const fetch = __nccwpck_require__(6416);
  
 async function main() {
   const jsonArray = core.getInput('files-input');
