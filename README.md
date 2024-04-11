@@ -11,7 +11,7 @@ Follow this link to view and add this action to your repo: [Click here!!!](https
 *Please make sure you are using the latest version!*
 
 ## Step 2
-# Generate yourself a Personal Access Token
+### Generate yourself a Personal Access Token
 [Click here to see instructions on how to generate a personal access token](https://docs.github.com/en/enterprise-server@3.9/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
 You will need to allow the token to access your user information.
 
@@ -19,7 +19,7 @@ See the screenshot below.
 
 ![User Permissions Screenshot](https://i.ibb.co/wWMD2B5/githubstuff.png)
 
-# Add your Personal Access Token to your Repo secrets
+### Add your Personal Access Token to your Repo secrets
 [Click here to read about how to create secrets in GitHub](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions)
 Save your secret as: *PERSONAL_ACCESS_TOKEN*
 
