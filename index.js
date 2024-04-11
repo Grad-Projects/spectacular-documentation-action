@@ -45,10 +45,10 @@ try {
 
   console.log("about to make call to API");
   //CHECK IF USER EXISTS API CALL
-  url =  `${apiUrl}${checkUserString}?api-version=2`;
+  url =  `${apiUrl}${checkUserString}?api-version=1`;
   callUserCheck();
 
-  url =  `${apiUrl}${generateDocString}?api-version=2`;
+  url =  `${apiUrl}${generateDocString}?api-version=1`;
   htmlList = docuGen();
   console.log(htmlList);
   console.log("finished making API calls");
