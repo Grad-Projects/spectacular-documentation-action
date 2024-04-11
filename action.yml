@@ -19,9 +19,6 @@ inputs:
     type: array
     items:
       type: string
-outputs:
-  generated-docs: 
-    description: 'HTML for generated documents'
 runs:
   using: 'node20'
   main: 'dist/index.js'
