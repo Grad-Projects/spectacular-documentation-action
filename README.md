@@ -1,6 +1,8 @@
 # Spectacular Documentation Generator Action 📖
 💻A GitHub action for generating spectacular C# documentation!🤓
 
+# This is not connected to our API yet ✨ so as of 11/4/2024 9AM it does not work💖
+
 Follow the steps below to add this spectacular tool to your repo👩‍💻
 
 ## Step 1
