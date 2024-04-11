@@ -33971,9 +33971,11 @@ try {
   console.log(`🌹The given file paths: ${filePaths}!`);
 
   filePaths.forEach(filePath => {
+    console.log("we here fellas");
     const base64String = fileToBase64(filePath);
       if(isCSFile(filePath)){
         if (base64String) {
+          console.log("yo yo now we here!!!");
           base64List.push(base64String);
         } else {
           console.log('😔 Failed to convert file to base64:', filePath);
@@ -33984,14 +33986,14 @@ try {
   });
 
 
-
+  console.log("about to make call to API");
   //CHECK IF USER EXISTS API CALL
   url =  `${apiUrl}${checkUserString}?api-version=2`;
   callUserCheck();
 
   url =  `${apiUrl}${generateDocString}?api-version=2`;
   docuGen();
-
+  console.log("finished making API calls");
 
 
 
