@@ -192,11 +192,13 @@
 //   }
 // }
 
-
+const fetch = require('node-fetch');
 const core = require('@actions/core');
 const fs = require('fs').promises;
 const path = require('path');
 const AdmZip = require('adm-zip');
+const github = require('@actions/github');
+
  
 async function main() {
   const jsonArray = core.getInput('files-input');
