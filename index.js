@@ -1,5 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+const path = require('node:path'); 
 
 try {
   const selectedStyle = core.getInput('style');

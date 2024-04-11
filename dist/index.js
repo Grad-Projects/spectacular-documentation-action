@@ -32147,6 +32147,14 @@ module.exports = require("node:events");
 
 /***/ }),
 
+/***/ 9411:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:path");
+
+/***/ }),
+
 /***/ 4492:
 /***/ ((module) => {
 
@@ -33935,6 +33943,7 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(5429);
 const github = __nccwpck_require__(8098);
+const path = __nccwpck_require__(9411); 
 
 try {
   const selectedStyle = core.getInput('style');
