@@ -33951,14 +33951,13 @@ const jsonArray = core.getInput('files-input');
 const base64List = [];
 const zip = new AdmZip();
 
+const personalAccessToken = core.getInput('github-personal-access-token');
+
 let filePaths = JSON.parse(jsonArray);
 
 try {
   const selectedStyle = core.getInput('style');
-  console.log(`Chosen style ${selectedStyle}!`);
-  const githubName = core.getInput('github-username');
-  console.log(`Github username:  ${githubName}!`);
-
+  console.log(`💕 Chosen style ${selectedStyle}!`);
 
   console.log(`🌹The given file paths: ${filePaths}!`);
 
@@ -33976,7 +33975,6 @@ try {
   });
 
   base64List.forEach(async (string,index) => {
-      console.log("we here");
       const htmlContent = `<html><body>${string}</body></html>`;
       const filename = `output${index}.html`;
       fs.writeFileSync(filename, htmlContent);

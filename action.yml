@@ -4,10 +4,10 @@ branding:
   icon: 'heart'
   color: 'red'
 inputs:
-  github-username:
-    description: 'Your github username'
+  github-personal-access-token:
+    description: 'Your github personal access token'
     required: true
-    default: 'username'
+    default: 'xxxxxxx'
   style:
     description: 'Style for output of documentation'
     required: true
