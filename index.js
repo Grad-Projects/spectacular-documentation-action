@@ -49,7 +49,7 @@ try {
   callUserCheck();
 
   url =  `${apiUrl}${generateDocString}?api-version=1`;
-  htmlList = docuGen();
+  htmlList = JSON.parse(docuGen());
   console.log(htmlList);
   console.log("finished making API calls");
 
@@ -185,17 +185,5 @@ async function callUserCheck() {
   } catch (error) {
     console.error('Error:', error);
   }
-}
-
-async function fetchUser() {
-  const authToken = personalAccessToken; // Replace 'your_auth_token_here' with your actual authorization token
-  const headers = {
-    'Authorization': `Bearer ${authToken}`,
-    'Content-Type': 'application/json' // Adjust content type if needed
-  };
-
-  const response = await fetch('/movies', { headers });
-  const movies = await response.json();
-  return movies;
 }
 
