@@ -34048,26 +34048,50 @@ function isCSFile(filePath) {
   return path.extname(filePath).toLowerCase() === '.cs';
 }
 
+// async function docuGen() {
+//     fetch(url, {
+//       method: 'PUT',
+//       headers: {
+//           'Authorization': `${personalAccessToken}`,
+//           'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify(base64List)
+//   })
+//       .then(response => {
+//           console.log('Status Code:', response.status); // Log the status code
+//           return response.json(); // Return the response JSON
+//       })
+//       .then(data => {
+//           console.log('Response:', data); // Log the response JSON
+//           //htmlList = JSON.parse(data);
+//       })
+//       .catch(error => {
+//           console.error('Error:', error);
+//       });
+// }
+
+
 async function docuGen() {
-    fetch(url, {
+  try {
+    const response = await fetch(url, {
       method: 'PUT',
       headers: {
-          'Authorization': `${personalAccessToken}`,
-          'Content-Type': 'application/json',
+        'Authorization': `${personalAccessToken}`,
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(base64List)
-  })
-      .then(response => {
-          console.log('Status Code:', response.status); // Log the status code
-          return response.json(); // Return the response JSON
-      })
-      .then(data => {
-          console.log('Response:', data); // Log the response JSON
-          //htmlList = JSON.parse(data);
-      })
-      .catch(error => {
-          console.error('Error:', error);
-      });
+      body: JSON.stringify(base64List),
+    });
+
+    console.log('Status Code:', response.status); // Log the status code
+
+    const data = await response.json(); // Parse response as JSON
+    console.log('Response:', data); // Log the response JSON
+
+    // Uncomment and use htmlList if needed
+    // const htmlList = JSON.parse(data);
+  } catch (error) {
+    console.error('Error:', error);
+  }
 }
 
 // async function callUserCheck() {
