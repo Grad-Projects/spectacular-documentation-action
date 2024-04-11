@@ -33992,9 +33992,14 @@ try {
   callUserCheck();
 
   url =  `${apiUrl}${generateDocString}?api-version=1`;
-  htmlList = JSON.parse(docuGen());
+  htmlList = docuGen();
   console.log(htmlList);
   console.log("finished making API calls");
+
+const checkUserResponse = callUserCheck(apiUrl, checkUserString, personalAccessToken);     
+console.log('Check User Response:', checkUserResponse);     
+const generateDocResponse = docuGen(apiUrl, generateDocString, personalAccessToken, base64List);     
+console.log('Generate Doc Response:', generateDocResponse);
 
 
 
