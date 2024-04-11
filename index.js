@@ -106,7 +106,7 @@ function isCSFile(filePath) {
 }
 
 async function docuGen() {
-  fetch(url, {
+    fetch(url, {
       method: 'PUT',
       headers: {
           'Authorization': `${personalAccessToken}`,
@@ -127,20 +127,51 @@ async function docuGen() {
       });
 }
 
+// async function callUserCheck() {
+//   fetch(url, {
+//       method: 'PUT',
+//       headers: {
+//           'Authorization': `${personalAccessToken}`,
+//       },
+//   })
+//       .then(response => {
+//           console.log('Status Code:', response.status); // Log the status code
+//       })
+//       .then(data => {
+//           console.log('Response:', data); // Log the response JSON
+//       })
+//       .catch(error => {
+//           console.error('Error:', error);
+//       });
+// }
+
 async function callUserCheck() {
-  fetch(url, {
+  try {
+    const response = await fetch(url, {
       method: 'PUT',
       headers: {
-          'Authorization': `${personalAccessToken}`,
+        'Authorization': `${personalAccessToken}`,
       },
-  })
-      .then(response => {
-          console.log('Status Code:', response.status); // Log the status code
-      })
-      .then(data => {
-          console.log('Response:', data); // Log the response JSON
-      })
-      .catch(error => {
-          console.error('Error:', error);
-      });
+    });
+
+    console.log('Status Code:', response.status); // Log the status code
+
+    const data = await response.json(); // Parse response as JSON
+    console.log('Response:', data); // Log the response JSON
+  } catch (error) {
+    console.error('Error:', error);
+  }
 }
+
+async function fetchUser() {
+  const authToken = personalAccessToken; // Replace 'your_auth_token_here' with your actual authorization token
+  const headers = {
+    'Authorization': `Bearer ${authToken}`,
+    'Content-Type': 'application/json' // Adjust content type if needed
+  };
+
+  const response = await fetch('/movies', { headers });
+  const movies = await response.json();
+  return movies;
+}
+
