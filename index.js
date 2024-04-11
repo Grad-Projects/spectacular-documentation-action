@@ -12,7 +12,7 @@ const personalAccessToken = core.getInput('github-personal-access-token');
 
 
 // Define the API URL
-const apiUrl = 'http://spectacular-generator.eba-833qa9rw.eu-west-1.elasticbeanstalk.com/';
+const apiUrl = 'http://spectacular-generator.eba-833qa9rw.eu-west-1.elasticbeanstalk.com';
 const checkUserString = '/api/checkUser';
 const generateDocString = '/api/generate/documentation';
 let filePaths = JSON.parse(jsonArray);
@@ -44,21 +44,13 @@ try {
 
   //CHECK IF USER EXISTS API CALL
   url =  `${apiUrl}${checkUserString}?api-version=2`;
+  callUserCheck();
 
-    // Make a PUT request
-  put(url,data)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log(data);
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
+  url =  `${apiUrl}${generateDocString}?api-version=2`;
+  docuGen();
+
+
+
 
   //GENERATE DOCUMENTATION API CALL
     //populate htmlList here <3
@@ -74,15 +66,6 @@ try {
 
   });
 
-
-
-  // base64List.forEach(async (string,index) => {
-  //     const htmlContent = `<html><body>${string}</body></html>`;
-  //     const filename = `output${index}.html`;
-  //     fs.writeFileSync(filename, htmlContent);
-  //     console.log(`Created HTML file: ${filename}`);
-  //     zip.addFile(filename, Buffer.from(htmlContent));
-  //   });
 
 
   zip.writeZip('output.zip');
@@ -117,4 +100,44 @@ function fileToBase64(filePath) {
 
 function isCSFile(filePath) {
   return path.extname(filePath).toLowerCase() === '.cs';
+}
+
+async function docuGen() {
+  fetch(url, {
+      method: 'PUT',
+      headers: {
+          'Authorization': `${personalAccessToken}`,
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(base64List)
+  })
+      .then(response => {
+          console.log('Status Code:', response.status); // Log the status code
+          return response.json(); // Return the response JSON
+      })
+      .then(data => {
+          console.log('Response:', data); // Log the response JSON
+          htmlList = JSON.parse(data);
+      })
+      .catch(error => {
+          console.error('Error:', error);
+      });
+}
+
+async function callUserCheck() {
+  fetch(url, {
+      method: 'PUT',
+      headers: {
+          'Authorization': `${personalAccessToken}`,
+      },
+  })
+      .then(response => {
+          console.log('Status Code:', response.status); // Log the status code
+      })
+      .then(data => {
+          console.log('Response:', data); // Log the response JSON
+      })
+      .catch(error => {
+          console.error('Error:', error);
+      });
 }
