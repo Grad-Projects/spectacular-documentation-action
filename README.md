@@ -70,6 +70,11 @@ Make sure that the following is filled in properly in your .yml 🦋
 | files-input                   | The paths to your C# files                                     | '["FilePath1","FilePath2",...]'        |
 | github-personal-access-token: | The secret for the personal access token you generated.        | '${{ secrets.PERSONAL_ACCESS_TOKEN }}' |
 
+## Step 4
+Run your action! Your documentation will be created as an artifact which you can find on the workflow page, as in the screenshot below:
+
+![Workflow Artifact Screenshot](https://i.ibb.co/Km6cHJb/githubstuff2.png)
+
 ## Available Styles Guide
 - Simple ✨
 - Serious Business 👨‍💼
