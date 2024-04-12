@@ -1,7 +1,11 @@
 # Spectacular Documentation Generator Action 📖
 💻A GitHub action for generating spectacular C# documentation!🤓
 
+# C# FILES ONLY!😘
+
 ## The latest release is v3.42 ❤️
+
+### *Please note* Only one class per file will be documented!🙇‍♀️ Make sure to only have one class per file!
 
 
 Follow the steps below to add this spectacular tool to your repo👩‍💻
