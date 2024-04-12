@@ -114,7 +114,7 @@ async function saveHtmlFiles(data) {
 
 
 async function docuGen(apiUrl, generateDocString, personalAccessToken, base64List) {
-  const url = `${apiUrl}${generateDocString}?style=${apiUrl}&api-version=1`;
+  const url = `${apiUrl}${generateDocString}?style=${selectedStyle}&api-version=1`;
   const response = await fetch(url, {
     method: 'PUT',
     headers: {
