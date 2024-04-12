@@ -57,7 +57,8 @@ try {
   callUserCheck();
 
 
-  url =  `${apiUrl}${generateDocString}?api-version=1`;
+  //url =  `${apiUrl}${generateDocString}?api-version=1`;
+  url = `${apiUrl}${generateDocString}?style=${apiUrl}&api-version=1`
   htmlList = JSON.parse(docuGen());
   console.log(htmlList);
 
