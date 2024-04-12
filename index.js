@@ -236,8 +236,9 @@ async function main() {
       }
     }
     
-    console.log(`👻 The base64 string: ${base64List}`);
-    console.log(`👻 The base64 string: ${base64List[0]}`);
+    console.log("👻 The base64 string:", base64List);
+    console.log("👻 The base64 string:", base64List[0]);
+
     console.log("about to make call to API");
     //console.log("BASE 64 LIST IS ", base64List);
  
@@ -312,18 +313,12 @@ async function callUserCheck(apiUrl, checkUserString, personalAccessToken) {
       'Authorization': `${personalAccessToken}`,
     }
   })
-    .then(response => {
-      console.log('Status Code:', response.status);
-       // Log the status code
-  })
-  .then(data => {
-      console.log('Response:', data); // Log the response JSON
-  })
-  .catch(error => {
-      console.error('Error:', error);
-  });
-  
-  //return await response.json();
+  console.log('Status Code:', response.status);
+  if (response.ok) {
+    console.log('Request successful');
+  } else {
+    console.error('Request failed:', response.statusText);
+  }
 }
  
 async function docuGen(apiUrl, generateDocString, personalAccessToken, base64List) {
