@@ -192,7 +192,7 @@
 //   }
 // }
 
-const fetch = require('node-fetch');
+//const fetch = require('node-fetch');
 const core = require('@actions/core');
 const fs = require('fs').promises;
 const path = require('path');
@@ -206,14 +206,17 @@ async function main() {
   const zip = new AdmZip();
  
   const personalAccessToken = core.getInput('github-personal-access-token');
- 
   const apiUrl = 'http://spectacular-generator.eba-833qa9rw.eu-west-1.elasticbeanstalk.com';
   const checkUserString = '/api/checkUser';
   const generateDocString = '/api/generate/documentation';
   let filePaths = JSON.parse(jsonArray);
- 
+  
+  //let filePaths = ["C:\\sandbox\\c#_levelUp\\spectacular-documentation-action\\test.cs"];
+  
+  let selectedStyle;
   try {
-    const selectedStyle = core.getInput('style');
+    //const selectedStyle = core.getInput('style');
+    selectedStyle = core.getInput('style');
     console.log(`💕 Chosen style ${selectedStyle}!`);
  
     console.log(`🌹The given file paths: ${filePaths}!`);
@@ -234,27 +237,44 @@ async function main() {
     }
  
     console.log("about to make call to API");
+    console.log("BASE 64 LIST IS ", base64List);
  
-    const checkUserResponse = await callUserCheck(apiUrl, checkUserString, personalAccessToken);
-    console.log('Check User Response:', checkUserResponse);
+    let checkUserResponse = callUserCheck(apiUrl, checkUserString, personalAccessToken);
+    console.log("Check User Response:", checkUserResponse);
  
-    const generateDocResponse = await docuGen(apiUrl, generateDocString, personalAccessToken, base64List);
-    console.log('Generate Doc Response:', generateDocResponse);
- 
-    htmlList = generateDocResponse;
- 
-    for (let i = 0; i < htmlList.length; i++) {
-      const html = htmlList[i];
-      const htmlContent = html[0];
-      console.log(`HTML CONTENT: ${htmlContent}`);
-      const fileName = `${html[1]}-${i}.html`;
-      console.log(`FILE NAME: ${fileName}`);
-      await fs.writeFile(fileName, htmlContent);
-      console.log(`Created HTML file: ${fileName}`);
-      zip.addFile(fileName, Buffer.from(htmlContent));
+    let generateDocResponse = await docuGen(apiUrl, generateDocString, personalAccessToken, base64List);
+    console.log("Check User Response:", generateDocResponse);
+    saveHtmlFiles(generateDocResponse);
+    //let htmlList = generateDocResponse;
+    //console.log("IDK", htmlList);
+    // for (let i = 0; i < htmlList.length; i++) {
+    //   const html = htmlList[i];
+    //   const htmlContent = html[0];
+    //   console.log(`HTML CONTENT: ${htmlContent}`);
+    //   const fileName = `${html[1]}-${i}.html`;
+    //   console.log(`FILE NAME: ${fileName}`);
+    //   await fs.writeFile(fileName, htmlContent);
+    //   console.log(`Created HTML file: ${fileName}`);
+    //   zip.addFile(fileName, Buffer.from(htmlContent));
+    // }
+
+    async function saveHtmlFiles(data) {
+      
+      for (const name of Object.keys(data)) {
+        const htmlContent = data[name];
+        const fileName = `${name}.html`;
+        zip.addFile(fileName, Buffer.from(htmlContent));
+        console.log(`Added HTML file to zip: ${fileName}`);
+      }
+    
+      zip.writeZip('output.zip');
+      console.log('Zip file created:', path.join(process.cwd(), 'output.zip'));
+
     }
- 
-    zip.writeZip('output.zip');
+
+
+
+    
     console.log('Created output.zip 🐳');
  
     const payload = JSON.stringify(github.context.payload, undefined, 2)
@@ -280,20 +300,33 @@ async function fileToBase64(filePath) {
 function isCSFile(filePath) {
   return path.extname(filePath).toLowerCase() === '.cs';
 }
- 
+
 async function callUserCheck(apiUrl, checkUserString, personalAccessToken) {
+  console.log("WE HIT HERE");
   const url = `${apiUrl}${checkUserString}?api-version=1`;
   const response = await fetch(url, {
     method: 'PUT',
     headers: {
       'Authorization': `${personalAccessToken}`,
-    },
+    }
+  })
+    .then(response => {
+      console.log('Status Code:', response.status);
+       // Log the status code
+  })
+  .then(data => {
+      console.log('Response:', data); // Log the response JSON
+  })
+  .catch(error => {
+      console.error('Error:', error);
   });
-  return await response.json();
+  
+  //return await response.json();
 }
  
 async function docuGen(apiUrl, generateDocString, personalAccessToken, base64List) {
-  const url = `${apiUrl}${generateDocString}?api-version=1`;
+  console.log("WE HIT HERE 2222");
+  const url = `${apiUrl}${generateDocString}?style=${apiUrl}&api-version=1`;
   const response = await fetch(url, {
     method: 'PUT',
     headers: {
@@ -301,9 +334,14 @@ async function docuGen(apiUrl, generateDocString, personalAccessToken, base64Lis
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(base64List),
-  });
-  return await response.json();
+  })
+  console.log('Status Code:', response.status); 
+  const data = await response.json(); 
+  console.log('DATA:', data); 
+  return data;
 }
- 
+
+
+
 main();
 
