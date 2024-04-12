@@ -237,7 +237,7 @@ async function main() {
     }
  
     console.log("about to make call to API");
-    console.log("BASE 64 LIST IS ", base64List);
+    //console.log("BASE 64 LIST IS ", base64List);
  
     let checkUserResponse = callUserCheck(apiUrl, checkUserString, personalAccessToken);
     console.log("Check User Response:", checkUserResponse);
