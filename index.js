@@ -146,10 +146,11 @@ async function docuGen() {
         'Authorization': `${personalAccessToken}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({base64List}),
+      body: JSON.stringify(base64List),
     });
     console.log('Status Code weeeooooo:', response.status); // Log the status code
-
+    console.log('BELOW IS WHAT IS PASSED INTO THE API FUCKING HELL');
+    console.log(JSON.stringify(base64List));
     const data = await response.json(); // Parse response as JSON
     console.log('Response:', data); // Log the response JSON
     htmlList = JSON.parse(data);
