@@ -210,14 +210,14 @@ async function main() {
   const checkUserString = '/api/checkUser';
   const generateDocString = '/api/generate/documentation';
   //let filePaths = JSON.parse(jsonArray);
-  let filePaths;
+  let filePaths = jsonArray;
 
-  try {
-    filePaths = JSON.parse(jsonArray);
-    console.log("Parsed JSON:", filePaths);
-  } catch (error) {
-    console.error("Error parsing JSON:", error);
-  }
+  // try {
+  //   filePaths = JSON.parse(jsonArray);
+  //   console.log("Parsed JSON:", filePaths);
+  // } catch (error) {
+  //   console.error("Error parsing JSON:", error);
+  // }
   
   
   //let filePaths = ["C:\\sandbox\\c#_levelUp\\spectacular-documentation-action\\hello.cs", "C:\\sandbox\\c#_levelUp\\spectacular-documentation-action\\tiddies.cs"];
