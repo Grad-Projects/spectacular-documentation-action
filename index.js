@@ -211,7 +211,7 @@ async function main() {
   const generateDocString = '/api/generate/documentation';
   let filePaths = JSON.parse(jsonArray);
   
-  //let filePaths = ["C:\\sandbox\\c#_levelUp\\spectacular-documentation-action\\test.cs"];
+  //let filePaths = ["C:\\sandbox\\c#_levelUp\\spectacular-documentation-action\\hello.cs", "C:\\sandbox\\c#_levelUp\\spectacular-documentation-action\\tiddies.cs"];
   
   let selectedStyle;
   try {
@@ -242,7 +242,7 @@ async function main() {
     console.log("about to make call to API");
     //console.log("BASE 64 LIST IS ", base64List);
  
-    let checkUserResponse = callUserCheck(apiUrl, checkUserString, personalAccessToken);
+    let checkUserResponse = await callUserCheck(apiUrl, checkUserString, personalAccessToken);
     console.log("Check User Response:", checkUserResponse);
  
     let generateDocResponse = await docuGen(apiUrl, generateDocString, personalAccessToken, base64List);
