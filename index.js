@@ -93,7 +93,7 @@ function isCSFile(filePath) {
 async function saveHtmlFiles(data) {
      
   for (const name of Object.keys(data)) {
-    const htmlContent = data[name];
+    const htmlContent = await data[name];
     console.log(data);
     console.log(data[name]);
     const fileName = `${name}.html`;
