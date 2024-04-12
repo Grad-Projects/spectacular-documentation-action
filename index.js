@@ -19,7 +19,6 @@ let filePaths = JSON.parse(jsonArray);
 
 var url;
 
-var htmlList = [];
 
 try {
   const selectedStyle = core.getInput('style');
@@ -59,30 +58,17 @@ try {
 
   //url =  `${apiUrl}${generateDocString}?api-version=1`;
   url = `${apiUrl}${generateDocString}?style=${apiUrl}&api-version=1`
-  htmlList = JSON.parse(docuGen());
-  console.log(htmlList);
+  let generateDocResponse = docuGen(apiUrl, generateDocString, personalAccessToken, base64List);
+  console.log("Check User Response:", generateDocResponse);
+  saveHtmlFiles(generateDocResponse);
 
   console.log("finished making API calls");
 
 
-  //GENERATE DOCUMENTATION API CALL
-    //populate htmlList here <3
-
-  htmlList.forEach(async (html,index) => {
-    const htmlContent = html[0];
-    console.log(`HTML CONTENT: ${htmlContent}`);
-    const fileName = `${html[1]}-${index}.html`;
-    console.log(`FILE NAME: ${fileName}`);
-    fs.writeFileSync(fileName, htmlContent);
-    console.log(`Created HTML file: ${filename}`);
-    zip.addFile(filename, Buffer.from(htmlContent));
-
-  });
 
 
-
-  zip.writeZip('output.zip');
-  console.log('Created output.zip 🐳');
+  // zip.writeZip('output.zip');
+  // console.log('Created output.zip 🐳');
 
   const payload = JSON.stringify(github.context.payload, undefined, 2)
   console.log(`The event payload: ${payload}`);
@@ -116,27 +102,19 @@ function isCSFile(filePath) {
   return path.extname(filePath).toLowerCase() === '.cs';
 }
 
-// async function docuGen() {
-//     fetch(url, {
-//       method: 'PUT',
-//       headers: {
-//           'Authorization': `${personalAccessToken}`,
-//           'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify(base64List)
-//   })
-//       .then(response => {
-//           console.log('Status Code:', response.status); // Log the status code
-//           return response.json(); // Return the response JSON
-//       })
-//       .then(data => {
-//           console.log('Response:', data); // Log the response JSON
-//           //htmlList = JSON.parse(data);
-//       })
-//       .catch(error => {
-//           console.error('Error:', error);
-//       });
-// }
+async function saveHtmlFiles(data) {
+     
+  for (const name of Object.keys(data)) {
+    const htmlContent = data[name];
+    const fileName = `${name}.html`;
+    zip.addFile(fileName, Buffer.from(htmlContent));
+    console.log(`Added HTML file to zip: ${fileName}`);
+  }
+
+  zip.writeZip('output.zip');
+  console.log('Zip file created:', path.join(process.cwd(), 'output.zip'));
+
+}
 
 
 async function docuGen() {
@@ -154,7 +132,7 @@ async function docuGen() {
     console.log(JSON.stringify(base64List));
     const data = await response.json(); // Parse response as JSON
     console.log('Response:', data); // Log the response JSON
-    htmlList = JSON.parse(data);
+    return data;
 
   } catch (error) {
     console.error('Error:', error);
