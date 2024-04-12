@@ -54,7 +54,7 @@ jobs:
         run: npm install --no-save async
       - name: Grabbing Inputs 💖
         id: inputs
-        uses: Grad-Projects/spectacular-documentation-action@v3.40
+        uses: Grad-Projects/spectacular-documentation-action@v3.43
         with:
           style: 'Simple'
           files-input: '["yourfiles","gohere"]'
