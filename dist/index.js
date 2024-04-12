@@ -34096,7 +34096,7 @@ async function docuGen() {
     const data = await response.json(); // Parse response as JSON
     console.log('Response:', data); // Log the response JSON
 
-    htmlList = data;
+    htmlList = JSON.parse(data);
   } catch (error) {
     console.error('Error:', error);
   }
