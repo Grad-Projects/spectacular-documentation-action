@@ -47,7 +47,6 @@ try {
   let checkUserResponse = callUserCheck(apiUrl, checkUserString, personalAccessToken);
   console.log("Check User Response:", checkUserResponse);
 
-
   //url =  `${apiUrl}${generateDocString}?api-version=1`;
   url = `${apiUrl}${generateDocString}?style=${apiUrl}&api-version=1`
   docuGen(apiUrl, generateDocString, personalAccessToken, base64List).then((generateDocResponse)=>
@@ -56,7 +55,7 @@ try {
   console.log("success!")
   );}
   );
-  console.log("Check User Response:", generateDocResponse);
+ // console.log("Check User Response:", generateDocResponse);
 
 
 
