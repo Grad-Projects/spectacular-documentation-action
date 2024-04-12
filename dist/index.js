@@ -33958,7 +33958,7 @@ const personalAccessToken = core.getInput('github-personal-access-token');
 const apiUrl = 'http://spectacular-generator.eba-833qa9rw.eu-west-1.elasticbeanstalk.com';
 const checkUserString = '/api/checkUser';
 const generateDocString = '/api/generate/documentation';
-let filePaths = core.getInput('files-input');
+let filePaths = JSON.parse(jsonArray);
 
 var url;
 
