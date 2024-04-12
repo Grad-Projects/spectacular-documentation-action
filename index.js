@@ -140,8 +140,7 @@ async function docuGen() {
       },
       body: JSON.stringify(base64List),
     });
-    console.log(body);
-    console.log('Status Code:', response.status); // Log the status code
+    console.log('Status Code weeeooooo:', response.status); // Log the status code
 
     const data = await response.json(); // Parse response as JSON
     console.log('Response:', data); // Log the response JSON
@@ -162,7 +161,7 @@ async function callUserCheck() {
       },
     });
 
-    console.log('Status Code:', response.status); // Log the status code
+    console.log('Status Code wwwweeeeeeeee9999666:', response.status); // Log the status code
 
     const data = await response.json(); // Parse response as JSON
     console.log('Response:', data); // Log the response JSON
