@@ -34048,7 +34048,7 @@ function isCSFile(filePath) {
 async function saveHtmlFiles(data) {
      
   for (const name of Object.keys(data)) {
-    const htmlContent = data[name];
+    const htmlContent = await data[name];
     const fileName = `${name}.html`;
     zip.addFile(fileName, Buffer.from(htmlContent));
     console.log(`Added HTML file to zip: ${fileName}`);
