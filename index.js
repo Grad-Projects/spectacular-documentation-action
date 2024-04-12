@@ -1,11 +1,9 @@
 const core = require('@actions/core');
-const github = require('@actions/github');
-const path = require('node:path'); 
+const fs = require('fs').promises;
+const path = require('path');
 const AdmZip = require('adm-zip');
-const fs = require('fs');
-
+const github = require('@actions/github');
 const jsonArray = core.getInput('files-input');
-var base64List = [];
 const zip = new AdmZip();
 
 const personalAccessToken = core.getInput('github-personal-access-token');
@@ -49,9 +47,9 @@ try {
 
   //url =  `${apiUrl}${generateDocString}?api-version=1`;
   url = `${apiUrl}${generateDocString}?style=${apiUrl}&api-version=1`
-  let generateDocResponse = await docuGen(apiUrl, generateDocString, personalAccessToken, base64List);
+  let generateDocResponse = docuGen(apiUrl, generateDocString, personalAccessToken, base64List);
   console.log("Check User Response:", generateDocResponse);
-  await saveHtmlFiles(generateDocResponse);
+  saveHtmlFiles(generateDocResponse);
 
 
 
