@@ -1,7 +1,8 @@
 # Spectacular Documentation Generator Action 📖
 💻A GitHub action for generating spectacular C# documentation!🤓
 
-# This is not connected to our API yet ✨ so as of 11/4/2024 9AM it does not work💖
+## The latest release is v3.40 ❤️
+
 
 Follow the steps below to add this spectacular tool to your repo👩‍💻
 
@@ -45,12 +46,14 @@ jobs:
         run: npm install adm-zip
       - name: List Files 📂
         run: ls -R
+      - name: add this weird thing
+        run: npm install --no-save async
       - name: Grabbing Inputs 💖
         id: inputs
-        uses: Grad-Projects/spectacular-documentation-action@vPUT LATEST VERSION NO. HERE
+        uses: Grad-Projects/spectacular-documentation-action@v3.40
         with:
-          style: 'Your chosen style goes here!'
-          files-input: '["The paths to your files go here!"]'
+          style: 'Simple'
+          files-input: '["yourfiles","gohere"]'
           github-personal-access-token: '${{ secrets.PERSONAL_ACCESS_TOKEN }}'
         
       - name: Build artifacts pls
