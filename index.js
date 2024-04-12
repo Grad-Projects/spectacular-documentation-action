@@ -313,13 +313,16 @@ async function callUserCheck(apiUrl, checkUserString, personalAccessToken) {
       'Authorization': `${personalAccessToken}`,
     }
   })
-  console.log('Status Code:', response.status);
-  if (response.ok) {
-    console.log('Request successful');
-  } else {
-    console.error('Request failed:', response.statusText);
-  }
+
+    console.log('Status Code:', response.status);
+    if (response.ok) {
+      console.log('Request successful');
+    } else {
+      console.error('Request failed:', response.statusText);
+    }
+    return response; // Return the response object
 }
+
  
 async function docuGen(apiUrl, generateDocString, personalAccessToken, base64List) {
   console.log("WE HIT HERE 2222");
