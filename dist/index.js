@@ -33984,14 +33984,6 @@ try {
       }
   });
 
-  console.log("BASE 64 LIST: ");
-  console.log(base64List);
-  console.log("TO STRINGED BASE 64 LIST: ")
-  console.log(base64List.toString());
-  console.log("how does it look hmmmm");
-  console.log("Below uses JSON.stringify hm");
-  console.log(JSON.stringify(base64List));
-
 
   console.log("about to make call to API");
   //CHECK IF USER EXISTS API CALL
@@ -34004,8 +33996,6 @@ try {
   let generateDocResponse = docuGen(apiUrl, generateDocString, personalAccessToken, base64List);
   console.log("Check User Response:", generateDocResponse);
   saveHtmlFiles(generateDocResponse);
-
-  console.log("finished making API calls");
 
 
 
@@ -34049,7 +34039,10 @@ function saveHtmlFiles(data) {
      
   for (const name of Object.keys(data)) {
     const htmlContent = data[name];
+    console.log(data);
+    console.log(data[name]);
     const fileName = `${name}.html`;
+    console.log(htmlContent);
     zip.addFile(fileName, Buffer.from(htmlContent));
     console.log(`Added HTML file to zip: ${fileName}`);
   }
