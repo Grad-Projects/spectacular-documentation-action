@@ -48,9 +48,11 @@ try {
   url =  `${apiUrl}${checkUserString}?api-version=1`;
   callUserCheck();
 
+
   url =  `${apiUrl}${generateDocString}?api-version=1`;
   docuGen();
   console.log(htmlList);
+
   console.log("finished making API calls");
 
 
@@ -145,29 +147,12 @@ async function docuGen() {
     console.log('Response:', data); // Log the response JSON
 
     // Uncomment and use htmlList if needed
-    htmlList = JSON.parse(data);
+    htmlList = data;
   } catch (error) {
     console.error('Error:', error);
   }
 }
 
-// async function callUserCheck() {
-//   fetch(url, {
-//       method: 'PUT',
-//       headers: {
-//           'Authorization': `${personalAccessToken}`,
-//       },
-//   })
-//       .then(response => {
-//           console.log('Status Code:', response.status); // Log the status code
-//       })
-//       .then(data => {
-//           console.log('Response:', data); // Log the response JSON
-//       })
-//       .catch(error => {
-//           console.error('Error:', error);
-//       });
-// }
 
 async function callUserCheck() {
   try {
