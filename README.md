@@ -1,6 +1,8 @@
 # Spectacular Documentation Generator Action 📖
 💻A GitHub action for generating spectacular C# documentation!🤓
 
+## The latest release is v3.40 ❤️
+
 
 Follow the steps below to add this spectacular tool to your repo👩‍💻
 
