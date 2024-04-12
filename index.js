@@ -235,7 +235,9 @@ async function main() {
         console.log("FOUND A FILE THAT IS NOT A C# FILE 😠 IT WILL NOT BE GENERATED INTO DOCUMENTATION")
       }
     }
- 
+    
+    console.log(`👻 The base64 string: ${base64List}`);
+    console.log(`👻 The base64 string: ${base64List[0]}`);
     console.log("about to make call to API");
     //console.log("BASE 64 LIST IS ", base64List);
  
