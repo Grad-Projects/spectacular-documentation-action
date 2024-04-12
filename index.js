@@ -19,7 +19,7 @@ let filePaths = JSON.parse(jsonArray);
 
 var url;
 
-var htmlList;
+var htmlList = [];
 
 try {
   const selectedStyle = core.getInput('style');
@@ -58,7 +58,7 @@ try {
 
 
   url =  `${apiUrl}${generateDocString}?api-version=1`;
-  docuGen();
+  htmlList = JSON.parse(docuGen());
   console.log(htmlList);
 
   console.log("finished making API calls");
@@ -153,7 +153,6 @@ async function docuGen() {
     const data = await response.json(); // Parse response as JSON
     console.log('Response:', data); // Log the response JSON
 
-    htmlList = JSON.parse(data);
   } catch (error) {
     console.error('Error:', error);
   }
