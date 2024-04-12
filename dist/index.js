@@ -34089,8 +34089,7 @@ async function docuGen() {
     const data = await response.json(); // Parse response as JSON
     console.log('Response:', data); // Log the response JSON
 
-    // Uncomment and use htmlList if needed
-    htmlList = response;
+    htmlList = data;
   } catch (error) {
     console.error('Error:', error);
   }
