@@ -3,7 +3,7 @@
 
 # C# FILES ONLY!😘
 
-## The latest release is v3.42 ❤️
+## The latest release is v3.43 ❤️
 
 ### *Please note* Only one class per file will be documented!🙇‍♀️ Make sure to only have one class per file!
 
