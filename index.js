@@ -102,10 +102,10 @@ function isCSFile(filePath) {
   return path.extname(filePath).toLowerCase() === '.cs';
 }
 
-async function saveHtmlFiles(data) {
+function saveHtmlFiles(data) {
      
   for (const name of Object.keys(data)) {
-    const htmlContent = await data[name];
+    const htmlContent = data[name];
     const fileName = `${name}.html`;
     zip.addFile(fileName, Buffer.from(htmlContent));
     console.log(`Added HTML file to zip: ${fileName}`);
