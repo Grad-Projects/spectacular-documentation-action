@@ -49,9 +49,9 @@ try {
 
   //url =  `${apiUrl}${generateDocString}?api-version=1`;
   url = `${apiUrl}${generateDocString}?style=${apiUrl}&api-version=1`
-  let generateDocResponse = docuGen(apiUrl, generateDocString, personalAccessToken, base64List);
+  let generateDocResponse = await docuGen(apiUrl, generateDocString, personalAccessToken, base64List);
   console.log("Check User Response:", generateDocResponse);
-  saveHtmlFiles(generateDocResponse);
+  await saveHtmlFiles(generateDocResponse);
 
 
 
@@ -90,7 +90,7 @@ function isCSFile(filePath) {
   return path.extname(filePath).toLowerCase() === '.cs';
 }
 
-function saveHtmlFiles(data) {
+async function saveHtmlFiles(data) {
      
   for (const name of Object.keys(data)) {
     const htmlContent = data[name];
