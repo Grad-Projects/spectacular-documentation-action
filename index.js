@@ -44,15 +44,20 @@ try {
   console.log("about to make call to API");
   //CHECK IF USER EXISTS API CALL
   url =  `${apiUrl}${checkUserString}?api-version=1`;
-  let checkUserResponse = await callUserCheck(apiUrl, checkUserString, personalAccessToken);
+  let checkUserResponse = callUserCheck(apiUrl, checkUserString, personalAccessToken);
   console.log("Check User Response:", checkUserResponse);
 
 
   //url =  `${apiUrl}${generateDocString}?api-version=1`;
   url = `${apiUrl}${generateDocString}?style=${apiUrl}&api-version=1`
-  let generateDocResponse = await docuGen(apiUrl, generateDocString, personalAccessToken, base64List);
+  docuGen(apiUrl, generateDocString, personalAccessToken, base64List).then((generateDocResponse)=>
+  {
+    saveHtmlFiles(generateDocResponse).then(()=>
+  console.log("success!")
+  );}
+  );
   console.log("Check User Response:", generateDocResponse);
-  await saveHtmlFiles(generateDocResponse);
+
 
 
 
