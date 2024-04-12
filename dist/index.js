@@ -33948,7 +33948,7 @@ const AdmZip = __nccwpck_require__(4691);
 const fs = __nccwpck_require__(7147);
 
 const jsonArray = core.getInput('files-input');
-const base64List = [];
+const base64List = {};
 const zip = new AdmZip();
 
 const personalAccessToken = core.getInput('github-personal-access-token');
@@ -33990,6 +33990,8 @@ try {
   console.log("TO STRINGED BASE 64 LIST: ")
   console.log(base64List.toString());
   console.log("how does it look hmmmm");
+  console.log("Below uses JSON.stringify hm");
+  console.log(JSON.stringify(base64List));
 
 
   console.log("about to make call to API");
