@@ -33948,7 +33948,7 @@ const AdmZip = __nccwpck_require__(4691);
 const fs = __nccwpck_require__(7147);
 
 const jsonArray = core.getInput('files-input');
-const base64List = {};
+var base64List = [];
 const zip = new AdmZip();
 
 const personalAccessToken = core.getInput('github-personal-access-token');
