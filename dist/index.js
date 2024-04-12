@@ -34089,7 +34089,7 @@ async function docuGen() {
         'Authorization': `${personalAccessToken}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(base64List),
+      body: base64List,
     });
     console.log('Status Code weeeooooo:', response.status); // Log the status code
 
