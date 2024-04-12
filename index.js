@@ -42,6 +42,12 @@ try {
       }
   });
 
+  console.log("BASE 64 LIST: ");
+  console.log(base64List);
+  console.log("STRINGIFIED BASE 64 LIST: ")
+  console.log(JSON.stringify(base64List));
+  console.log("how does it look hmmmm");
+
 
   console.log("about to make call to API");
   //CHECK IF USER EXISTS API CALL
