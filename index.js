@@ -209,7 +209,16 @@ async function main() {
   const apiUrl = 'http://spectacular-generator.eba-833qa9rw.eu-west-1.elasticbeanstalk.com';
   const checkUserString = '/api/checkUser';
   const generateDocString = '/api/generate/documentation';
-  let filePaths = JSON.parse(jsonArray);
+  //let filePaths = JSON.parse(jsonArray);
+  let filePaths;
+
+  try {
+    filePaths = JSON.parse(jsonArray);
+    console.log("Parsed JSON:", filePaths);
+  } catch (error) {
+    console.error("Error parsing JSON:", error);
+  }
+  
   
   //let filePaths = ["C:\\sandbox\\c#_levelUp\\spectacular-documentation-action\\hello.cs", "C:\\sandbox\\c#_levelUp\\spectacular-documentation-action\\tiddies.cs"];
   
