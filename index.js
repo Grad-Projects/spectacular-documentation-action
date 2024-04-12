@@ -44,14 +44,15 @@ try {
   console.log("about to make call to API");
   //CHECK IF USER EXISTS API CALL
   url =  `${apiUrl}${checkUserString}?api-version=1`;
-  callUserCheck();
+  let checkUserResponse = await callUserCheck(apiUrl, checkUserString, personalAccessToken);
+  console.log("Check User Response:", checkUserResponse);
 
 
   //url =  `${apiUrl}${generateDocString}?api-version=1`;
   url = `${apiUrl}${generateDocString}?style=${apiUrl}&api-version=1`
-  let generateDocResponse = docuGen(apiUrl, generateDocString, personalAccessToken, base64List);
+  let generateDocResponse = await docuGen(apiUrl, generateDocString, personalAccessToken, base64List);
   console.log("Check User Response:", generateDocResponse);
-  saveHtmlFiles(generateDocResponse);
+  await saveHtmlFiles(generateDocResponse);
 
 
 
@@ -93,8 +94,8 @@ function isCSFile(filePath) {
 async function saveHtmlFiles(data) {
      
   for (const name of Object.keys(data)) {
-    const htmlContent = await data[name];
-    console.log(data);
+    const htmlContent = data[name];
+    console.log("WE ARE IN SAVE HTML FILES???/");
     console.log(data[name]);
     const fileName = `${name}.html`;
     console.log(htmlContent);
@@ -139,6 +140,8 @@ async function callUserCheck() {
 
     const data = await response.json(); // Parse response as JSON
     console.log('Response:', data); // Log the response JSON
+
+    return data;
   } catch (error) {
     console.error('Error:', error);
   }
