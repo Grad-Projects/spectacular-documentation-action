@@ -5,6 +5,7 @@ const AdmZip = require('adm-zip');
 const github = require('@actions/github');
 const jsonArray = core.getInput('files-input');
 const zip = new AdmZip();
+ var base64List = [];
 
 const personalAccessToken = core.getInput('github-personal-access-token');
 
