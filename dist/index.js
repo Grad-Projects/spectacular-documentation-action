@@ -34046,7 +34046,7 @@ function fileToBase64(filePath) {
 
       // Convert the buffer to a base64 string
       const base64String = fileBuffer.toString('base64');
-
+      base64String = `${base64String}'`
       return base64String;
   } catch (error) {
       console.error('👎 Error reading file:', error);
