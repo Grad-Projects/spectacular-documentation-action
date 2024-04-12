@@ -33987,8 +33987,8 @@ try {
 
   console.log("BASE 64 LIST: ");
   console.log(base64List);
-  console.log("STRINGIFIED BASE 64 LIST: ")
-  console.log(JSON.stringify(base64List));
+  console.log("TO STRINGED BASE 64 LIST: ")
+  console.log(base64List.toString());
   console.log("how does it look hmmmm");
 
 
@@ -34087,7 +34087,7 @@ async function docuGen() {
         'Authorization': `${personalAccessToken}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(base64List),
+      body: base64List.toString(),
     });
     console.log('Status Code weeeooooo:', response.status); // Log the status code
 
