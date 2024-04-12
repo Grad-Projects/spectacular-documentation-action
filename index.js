@@ -33,7 +33,7 @@ try {
       if(isCSFile(filePath)){
         if (base64String) {
           console.log("yo yo now we here!!!");
-          base64List.push(base64String);
+          base64List.push(`{${base64String}}`);
         } else {
           console.log('😔 Failed to convert file to base64:', filePath);
         }
