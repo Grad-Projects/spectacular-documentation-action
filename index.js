@@ -108,7 +108,6 @@ async function saveHtmlFiles(data) {
 
 
 async function docuGen(apiUrl, generateDocString, personalAccessToken, base64List) {
-  console.log("WE HIT HERE 2222");
   const url = `${apiUrl}${generateDocString}?style=${apiUrl}&api-version=1`;
   const response = await fetch(url, {
     method: 'PUT',
@@ -118,6 +117,7 @@ async function docuGen(apiUrl, generateDocString, personalAccessToken, base64Lis
     },
     body: JSON.stringify(base64List),
   })
+  console.log(JSON.stringify(base64List));
   console.log('Status Code:', response.status);
   const data = await response.json();
   console.log('DATA:', data);
