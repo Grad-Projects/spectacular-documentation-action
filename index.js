@@ -1,6 +1,5 @@
 const core = require('@actions/core');
 const fs = require('fs');
-//const fs = require('fs').promises;
 const path = require('path');
 const AdmZip = require('adm-zip');
 const github = require('@actions/github');
@@ -10,7 +9,6 @@ const zip = new AdmZip();
 
 const personalAccessToken = core.getInput('github-personal-access-token');
 
-
 // Define the API URL
 const apiUrl = 'http://spectacular-generator.eba-833qa9rw.eu-west-1.elasticbeanstalk.com';
 const checkUserString = '/api/checkUser';
@@ -18,7 +16,6 @@ const generateDocString = '/api/generate/documentation';
 let filePaths = JSON.parse(jsonArray);
 
 var url;
-
 
 try {
   const selectedStyle = core.getInput('style');
@@ -41,13 +38,10 @@ try {
   });
 
 
-  console.log("about to make call to API");
-  //CHECK IF USER EXISTS API CALL
   url =  `${apiUrl}${checkUserString}?api-version=1`;
   let checkUserResponse = callUserCheck(apiUrl, checkUserString, personalAccessToken);
   console.log("Check User Response:", checkUserResponse);
 
-  //url =  `${apiUrl}${generateDocString}?api-version=1`;
   url = `${apiUrl}${generateDocString}?style=${apiUrl}&api-version=1`
   docuGen(apiUrl, generateDocString, personalAccessToken, base64List).then((generateDocResponse)=>
   {
@@ -55,22 +49,12 @@ try {
   console.log("success!")
   );}
   );
- // console.log("Check User Response:", generateDocResponse);
-
-
-
-
-
-  // zip.writeZip('output.zip');
-  // console.log('Created output.zip 🐳');
 
   const payload = JSON.stringify(github.context.payload, undefined, 2)
   console.log(`The event payload: ${payload}`);
 } catch (error) {
   core.setFailed(error.message);
 }
-
-
 
 function fileToBase64(filePath) {
   try {
@@ -99,7 +83,6 @@ async function saveHtmlFiles(data) {
      
   for (const name of Object.keys(data)) {
     const htmlContent = data[name];
-    console.log("WE ARE IN SAVE HTML FILES???/");
     console.log(data[name]);
     const fileName = `${name}.html`;
     console.log(htmlContent);
@@ -141,7 +124,7 @@ async function callUserCheck() {
       },
     });
 
-    console.log('Status Code wwwweeeeeeeee9999666:', response.status); // Log the status code
+    console.log('Status Code:', response.status); // Log the status code
 
     const data = await response.json(); // Parse response as JSON
     console.log('Response:', data); // Log the response JSON
