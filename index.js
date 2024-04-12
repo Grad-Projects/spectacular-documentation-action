@@ -79,7 +79,6 @@ function fileToBase64(filePath) {
 
       // Convert the buffer to a base64 string
       const base64String = fileBuffer.toString('base64');
-      console.log(base64String);
       return base64String;
   } catch (error) {
       console.error('👎 Error reading file:', error);
@@ -109,26 +108,21 @@ function saveHtmlFiles(data) {
 }
 
 
-async function docuGen() {
-  try {
-    const response = await fetch(url, {
-      method: 'PUT',
-      headers: {
-        'Authorization': `${personalAccessToken}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(base64List),
-    });
-    console.log('Status Code weeeooooo:', response.status); // Log the status code
-    console.log('BELOW IS WHAT IS PASSED INTO THE API FUCKING HELL');
-    console.log(JSON.stringify(base64List));
-    const data = await response.json(); // Parse response as JSON
-    console.log('Response:', data); // Log the response JSON
-    return data;
-
-  } catch (error) {
-    console.error('Error:', error);
-  }
+async function docuGen(apiUrl, generateDocString, personalAccessToken, base64List) {
+  console.log("WE HIT HERE 2222");
+  const url = `${apiUrl}${generateDocString}?style=${apiUrl}&api-version=1`;
+  const response = await fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Authorization': `${personalAccessToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(base64List),
+  })
+  console.log('Status Code:', response.status);
+  const data = await response.json();
+  console.log('DATA:', data);
+  return data;
 }
 
 
