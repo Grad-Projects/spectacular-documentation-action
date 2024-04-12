@@ -114,6 +114,7 @@ async function saveHtmlFiles(data) {
 
 
 async function docuGen(apiUrl, generateDocString, personalAccessToken, base64List) {
+  selectedStyle = core.getInput('style');
   const url = `${apiUrl}${generateDocString}?style=${selectedStyle}&api-version=1`;
   const response = await fetch(url, {
     method: 'PUT',
