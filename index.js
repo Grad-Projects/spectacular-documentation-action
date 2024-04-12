@@ -15,7 +15,7 @@ const personalAccessToken = core.getInput('github-personal-access-token');
 const apiUrl = 'http://spectacular-generator.eba-833qa9rw.eu-west-1.elasticbeanstalk.com';
 const checkUserString = '/api/checkUser';
 const generateDocString = '/api/generate/documentation';
-let filePaths = JSON.parse(jsonArray);
+let filePaths = core.getInput('files-input');
 
 var url;
 
@@ -33,7 +33,7 @@ try {
       if(isCSFile(filePath)){
         if (base64String) {
           console.log("yo yo now we here!!!");
-          base64List.push(`{${base64String}}`);
+          base64List.push(base64String);
         } else {
           console.log('😔 Failed to convert file to base64:', filePath);
         }
